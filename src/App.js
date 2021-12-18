@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-
-
 class App extends Component {
   constructor(props){
     super(props);
