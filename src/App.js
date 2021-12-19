@@ -1,19 +1,8 @@
-import React, { Component } from 'react';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-
-class App extends Component {
-  constructor(props){
-    super(props);
-  }
-  render() {
-    return (
-        <div>
-            <h1 className='text-3xl font-bold underline'>{this.props.title || <Skeleton />}</h1>
-            {this.props.body || <Skeleton count={2} />}
-        </div>
-    );
-  }
+import React from "react"
+export default function App() {
+  return (
+    <h1 className="text-red-500 text-3xl font-bold underline">
+      Hello world!
+    </h1>
+  )
 }
-
-export default App;

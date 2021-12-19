@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './assets/css/tailwind.css';
 
-import { firebase, reacgramAnalytics, FieldValue } from './lib/firebase';
-import { FirebaseContext } from './context/firebase'
+import { app, FieldValue } from './lib/firebase/firebase';
+import { FirebaseContext } from './context/firebase/firebase';
+
+
+import App from './App';
+import './assets/css/main.css';
+
 
 ReactDOM.render(
-  // a context that provides data uses the .Provider property
-  <FirebaseContext.Provider value={{firebase, reacgramAnalytics, FieldValue}} >
-      <App title='John' />
-  </FirebaseContext.Provider>,
+    <FirebaseContext.Provider value={{ app, FieldValue }}>
+      <App />
+    </FirebaseContext.Provider>,
+
   document.getElementById('root')
 );
