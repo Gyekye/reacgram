@@ -12,16 +12,34 @@ const NotFound = lazy(() => import ('./pages/NotFound'));
 export default function App() {
   return (
     <BrowserRouter>
-      <Suspense
-      fallback={<p>Loading content</p>}>
-      <Routes>
-        <Route exact path={ROUTES.DASHBOARD} element={<Dashboard />} />
-        <Route exact path={ROUTES.LOGIN} element={<Login />} />
-        <Route exact path={ROUTES.SIGNUP} element={<SignUp />} />
-        <Route exact path={ROUTES.PROFILE} element={<Profile />} />
-        <Route exact path={ROUTES.NOT_FOUND} element={<NotFound />} />
-      </Routes>
-    </Suspense>
+      <Suspense fallback={<p>Loading content</p>}>
+        <Routes>
+          <Route
+            exact path={ROUTES.DASHBOARD}
+            element={<Dashboard />}
+          />
+
+          <Route
+            exact path={ROUTES.LOGIN}
+            element={<Login />}
+          />
+
+          <Route
+            exact path={ROUTES.SIGNUP}
+            element={<SignUp />}
+          />
+
+          <Route
+            exact path={ROUTES.PROFILE}
+            element={<Profile />}
+          />
+
+          <Route
+            exact path={ROUTES.NOT_FOUND}
+            element={<NotFound />}
+          />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }
