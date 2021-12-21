@@ -1,23 +1,76 @@
-import { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState,useEffect,useContext } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
+
+import { FirebaseContext } from '../context/firebase/firebase';
 
 import * as ROUTES from '../constants/Routes';
 import Logo from '../assets/images/logo.png';
+import { UilFacebook } from '@iconscout/react-unicons';
 
 
 export default function Login(){
+
+    //* Init Context
+    //? Destructure auth api value from the FirebaseContext value list
+    const { auth } = useContext(FirebaseContext);
 
     //* Init State
     const[emailAddress, setEmailAddress] = useState('');
     const[password, setPassword] = useState('');
 
-    //! Form error handler
+    //* Routing Hooks
+    let navigate = useNavigate();
+
+    //! Form  handler
     const[error, setError] = useState('');
     const isInValid = emailAddress === '' || password === '';
+    const handleSubmit =  async (event) => {
+
+        //? prevents form from reloading
+        event.preventDefault();
+
+        try{
+            //? make a request to Fire signInWithEmailAndPassword api
+            await auth.signInWithEmailAndPassword(emailAddress, password);
+
+            //* Save user details in an obj
+            const userObj = {
+                email:emailAddress,
+                password:password,
+            }
+
+            //? Save it to local Storage
+            localStorage.setItem('user', JSON.stringify(userObj))
+
+            //? after auth success redirect to Dashboard Page
+            navigate(ROUTES.DASHBOARD, {replace: true})
+
+        }
+        catch(error){
+            //* setError to the error from catch
+            setError(error.message);
+        }
+    }
+    //* userObj
 
     //* Init Side Effect
     useEffect(() => {
-        return document.title = 'Login'
+        //? set page title
+        document.title = 'Login';
+
+        //* get user details from localstorage
+        const userData = localStorage.getItem('user');
+
+        //* check for a user data
+        if( userData ){
+
+            //? if a user is found in local Storage, parse it to javascript obj
+            const foundUser = JSON.parse(userData)
+
+            //* pass user Data to state
+            setEmailAddress(foundUser.email);
+            setPassword(foundUser.password)
+        }
     },[])
 
 
@@ -30,8 +83,8 @@ export default function Login(){
                     alt='Instagram Logo'
                     className='block py-6'
                 />
-
-                <form method='POST' className='w-4/5 flex flex-col'>
+                { error && <span className='text-xs font-semibold text-red-400 px-4 py-1 text-center bg-red-50 rounded-md w-4/5'>{error}</span>}
+                <form method='POST' onSubmit={handleSubmit} className='w-4/5 flex flex-col'>
                     <input
                         type='text'
                         className='py-2 px-1 border border-gray-300 rounded-sm mb-1 text-sm text-gray-500 word-space-tighter'
@@ -63,7 +116,7 @@ export default function Login(){
                 <Link
                     className='text-blue-900 text-sm font-semibold word-space-tighter'
                     to='#'
-                    >Log in with Facebook
+                    ><UilFacebook className='inline mr-1 my-auto ' />Log in with Facebook
                 </Link>
 
                 <Link

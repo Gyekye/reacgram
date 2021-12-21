@@ -13,6 +13,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = window.firebase.initializeApp(firebaseConfig);
+const auth = app.auth();
 
 // exporting modules
-export {app, FieldValue};
+export {app, FieldValue, auth};
