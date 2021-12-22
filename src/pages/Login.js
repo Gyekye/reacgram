@@ -1,11 +1,10 @@
 import { useState,useEffect,useContext } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate }              from 'react-router-dom';
 
 import { FirebaseContext } from '../context/firebase/firebase';
-
-import * as ROUTES from '../constants/Routes';
-import Logo from '../assets/images/logo.png';
-import { UilFacebook } from '@iconscout/react-unicons';
+import * as ROUTES         from '../constants/Routes';
+import Logo                from '../assets/images/logo.png';
+import { UilFacebook }     from '@iconscout/react-unicons';
 
 
 export default function Login(){
@@ -16,7 +15,7 @@ export default function Login(){
 
     //* Init State
     const[emailAddress, setEmailAddress] = useState('');
-    const[password, setPassword] = useState('');
+    const[password, setPassword]         = useState('');
 
     //* Routing Hooks
     let navigate = useNavigate();
@@ -77,7 +76,7 @@ export default function Login(){
     //* Render UI
     return(
         <div className='max-w-screen-sm h-screen mx-auto flex flex-col items-center'>
-            <div className='w-[22rem] h-[26rem] flex flex-col items-center justify-around mb-4 mt-10 bg-white border border-gray-200'>
+            <div className='w-[22rem] h-[28rem] flex flex-col items-center justify-around mb-4 mt-10 bg-white border border-gray-200'>
                 <img
                     src={Logo}
                     alt='Instagram Logo'

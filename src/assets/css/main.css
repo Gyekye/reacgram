@@ -19,10 +19,14 @@ input[type='text' i]::placeholder, input[type='password' i]::placeholder{
 }
 
 input{
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     font-size: 13px;
     outline: none;
 }
 input:focus-within{
     outline: .5px solid #979393;
+}
+
+.tex{
+    color: #8E8E8E;
 }
