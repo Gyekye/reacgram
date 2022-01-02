@@ -19,8 +19,9 @@ export default function Dashboard(){
     return(
         <div className=''>
             <Header />
-            <div className='flex justify-around bg-red-100'>
-
+            <div className='flex justify-around'>
+                <Sidebar/>
+                <TimeLine />
             </div>
         </div>
     );
